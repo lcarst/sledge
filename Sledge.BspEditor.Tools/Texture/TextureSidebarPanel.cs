@@ -138,7 +138,10 @@ namespace Sledge.BspEditor.Tools.Texture
             {
                 if (bmp != null)
                 {
-                    if (bmp.Width > SelectionPictureBox.Width || bmp.Height > SelectionPictureBox.Height)
+                    // Temp: Hardcoded
+                    const bool zoom = true;
+
+                    if (bmp.Width > SelectionPictureBox.Width || bmp.Height > SelectionPictureBox.Height || zoom)
                     {
                         SelectionPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                     }
