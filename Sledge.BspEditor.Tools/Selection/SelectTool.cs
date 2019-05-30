@@ -63,6 +63,7 @@ namespace Sledge.BspEditor.Tools.Selection
         [Setting] public bool SelectionBoxOnlySelectsByCenterHandles { get; set; } = false;
         [Setting] public bool SelectionClickCycles { get; set; } = true;
         [Setting] public bool KeepVisgroupsWhenCloning { get; set; } = true;
+        [Setting] public bool RememberTransformationMode { get; set; } = false;
 
         string ISettingsContainer.Name => "Sledge.BspEditor.Tools.SelectTool";
 
@@ -76,6 +77,7 @@ namespace Sledge.BspEditor.Tools.Selection
             yield return new SettingKey("Tools/Selection", "SelectionBoxOnlySelectsByCenterHandles", typeof(bool));
             yield return new SettingKey("Tools/Selection", "SelectionClickCycles", typeof(bool));
             yield return new SettingKey("Tools/Selection", "KeepVisgroupsWhenCloning", typeof(bool));
+            yield return new SettingKey("Tools/Selection", "RememberTransformationMode", typeof(bool));
         }
 
         void ISettingsContainer.LoadValues(ISettingsStore store)
@@ -282,7 +284,10 @@ namespace Sledge.BspEditor.Tools.Selection
 
         public override async Task ToolSelected()
         {
-            TransformationModeChanged(SelectionBoxDraggableState.TransformationMode.Resize);
+            if (RememberTransformationMode)
+                TransformationModeChanged(_selectionBox.CurrentTransformationMode);
+            else
+                TransformationModeChanged(SelectionBoxDraggableState.TransformationMode.Resize);
 
             var document = GetDocument();
             if (document != null)
@@ -307,7 +312,7 @@ namespace Sledge.BspEditor.Tools.Selection
                 var box = document.Selection.GetSelectionBoundingBox();
                 _selectionBox.SetRotationOrigin(box.Center);
             }
-            else
+            else if (!RememberTransformationMode)
                 TransformationModeChanged(SelectionBoxDraggableState.TransformationMode.Resize);
         }
 
