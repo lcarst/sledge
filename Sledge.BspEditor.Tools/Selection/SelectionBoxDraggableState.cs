@@ -219,10 +219,19 @@ namespace Sledge.BspEditor.Tools.Selection
             Update();
         }
 
+        protected override bool ShouldDrawBoxFill()
+        {
+            return true;
+        }
+
         protected override void DrawBox(IViewport viewport, OrthographicCamera camera, I2DRenderer im, Vector3 start, Vector3 end)
         {
-            im.AddRectFilled(start.ToVector2(), end.ToVector2(), GetRenderFillColour());
             im.AddRect(start.ToVector2(), end.ToVector2(), GetRenderBoxColour());
+        }
+
+        protected override void DrawBoxFill(IViewport viewport, OrthographicCamera camera, I2DRenderer im, Vector3 start, Vector3 end)
+        {
+            im.AddRectFilled(start.ToVector2(), end.ToVector2(), GetRenderFillColour());
         }
 
         protected override Color GetRenderFillColour()

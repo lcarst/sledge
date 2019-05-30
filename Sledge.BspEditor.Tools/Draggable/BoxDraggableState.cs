@@ -27,6 +27,7 @@ namespace Sledge.BspEditor.Tools.Draggable
 
         public bool RenderBoxText { get; set; } = true;
         public bool RenderBox { get; set; } = true;
+        public bool RenderBoxFill { get; set; } = true;
 
         protected IDraggable[] BoxHandles { get; set; }
 
@@ -185,20 +186,26 @@ namespace Sledge.BspEditor.Tools.Draggable
             return State.Action == BoxAction.Drawing || State.Action == BoxAction.Drawn || State.Action == BoxAction.Resizing;
         }
 
+        protected virtual bool ShouldDrawBoxFill()
+        {
+            if (!RenderBoxFill) return false;
+            return State.Action == BoxAction.Drawing || State.Action == BoxAction.Drawn || State.Action == BoxAction.Resizing;
+        }
+
         protected virtual bool ShouldDrawBoxText()
         {
             if (!RenderBoxText) return false;
             return ShouldDrawBox();
         }
 
-        protected virtual Color GetRenderFillColour()
-        {
-            return FillColour;
-        }
-
         protected virtual Color GetRenderBoxColour()
         {
             return BoxColour;
+        }
+
+        protected virtual Color GetRenderFillColour()
+        {
+            return FillColour;
         }
 
         public override void Render(IViewport viewport, OrthographicCamera camera, Vector3 worldMin, Vector3 worldMax, I2DRenderer im)
@@ -208,6 +215,13 @@ namespace Sledge.BspEditor.Tools.Draggable
                 var start = camera.WorldToScreen(Vector3.Min(State.Start, State.End));
                 var end = camera.WorldToScreen(Vector3.Max(State.Start, State.End));
                 DrawBox(viewport, camera, im, start, end);
+            }
+
+            if (ShouldDrawBoxFill())
+            {
+                var start = camera.WorldToScreen(Vector3.Min(State.Start, State.End));
+                var end = camera.WorldToScreen(Vector3.Max(State.Start, State.End));
+                DrawBoxFill(viewport, camera, im, start, end);
             }
 
             if (ShouldDrawBoxText())
@@ -222,9 +236,14 @@ namespace Sledge.BspEditor.Tools.Draggable
         {
             start = Vector3.Max(start, new Vector3(-100, -100, -100));
             end = Vector3.Min(end, new Vector3(viewport.Width + 100, viewport.Height + 100, 100));
-            
-            im.AddRectFilled(start.ToVector2(), end.ToVector2(), GetRenderFillColour());
             im.AddRect(start.ToVector2(), end.ToVector2(), GetRenderBoxColour());
+        }
+
+        protected virtual void DrawBoxFill(IViewport viewport, OrthographicCamera camera, I2DRenderer im, Vector3 start, Vector3 end)
+        {
+            start = Vector3.Max(start, new Vector3(-100, -100, -100));
+            end = Vector3.Min(end, new Vector3(viewport.Width + 100, viewport.Height + 100, 100));
+            im.AddRectFilled(start.ToVector2(), end.ToVector2(), GetRenderFillColour());
         }
 
         protected virtual void DrawBoxText(IViewport viewport, OrthographicCamera camera, I2DRenderer im, Vector3 start, Vector3 end)

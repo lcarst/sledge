@@ -55,7 +55,7 @@ namespace Sledge.BspEditor.Tools.Selection
 
         // Settings
 
-        [Setting] public int SelectionBoxBackgroundOpacity { get;set; } = 64;
+        [Setting] public int SelectionBoxBackgroundOpacity { get; set; } = 64;
         [Setting] public bool AutoSelectBox { get; set; } = false;
         [Setting] public bool Show3DWidgets { get; set; } = false;
         [Setting] public bool SelectByCenterHandles { get; set; } = true;
@@ -107,14 +107,18 @@ namespace Sledge.BspEditor.Tools.Selection
         {
             _selectionBox = new SelectionBoxDraggableState(this);
             _selectionBox.BoxColour = Color.Yellow;
-            _selectionBox.FillColour = Color.FromArgb(SelectionBoxBackgroundOpacity, Color.White);
+            //_selectionBox.FillColour = Color.FromArgb(SelectionBoxBackgroundOpacity, Color.White);
+            _selectionBox.FillColour = Color.Transparent;
             _selectionBox.State.Changed += SelectionBoxChanged;
             States.Add(_selectionBox);
             Children.AddRange(_selectionBox.Widgets);
 
             _emptyBox = new BoxDraggableState(this);
             _emptyBox.BoxColour = Color.Yellow;
-            _emptyBox.FillColour = Color.FromArgb(SelectionBoxBackgroundOpacity, Color.White);
+
+            //_emptyBox.FillColour = Color.FromArgb(SelectionBoxBackgroundOpacity, Color.White);
+            _emptyBox.FillColour = Color.Transparent;
+            
             _emptyBox.State.Changed += EmptyBoxChanged;
             _emptyBox.DragEnded += (sender, args) =>
             {
