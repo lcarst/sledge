@@ -98,7 +98,7 @@ namespace Sledge.Shell.Forms
             this.DocumentContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DocumentContainer.Location = new System.Drawing.Point(8, 24);
             this.DocumentContainer.Name = "DocumentContainer";
-            this.DocumentContainer.Size = new System.Drawing.Size(459, 258);
+            this.DocumentContainer.Size = new System.Drawing.Size(409, 258);
             this.DocumentContainer.TabIndex = 3;
             // 
             // DocumentTabs
@@ -107,7 +107,7 @@ namespace Sledge.Shell.Forms
             this.DocumentTabs.Location = new System.Drawing.Point(8, 0);
             this.DocumentTabs.Name = "DocumentTabs";
             this.DocumentTabs.SelectedIndex = 0;
-            this.DocumentTabs.Size = new System.Drawing.Size(459, 24);
+            this.DocumentTabs.Size = new System.Drawing.Size(409, 24);
             this.DocumentTabs.TabIndex = 4;
             this.DocumentTabs.RequestClose += new Sledge.Shell.Controls.ClosableTabControl.RequestCloseEventHandler(this.RequestClose);
             this.DocumentTabs.SelectedIndexChanged += new System.EventHandler(this.TabChanged);
@@ -116,12 +116,13 @@ namespace Sledge.Shell.Forms
             // 
             this.RightSidebar.Controls.Add(this.RightSidebarContainer);
             this.RightSidebar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RightSidebar.DockDimension = 200;
+            this.RightSidebar.DockDimension = 250;
             this.RightSidebar.Hidden = false;
-            this.RightSidebar.Location = new System.Drawing.Point(467, 0);
+            this.RightSidebar.Location = new System.Drawing.Point(417, 0);
+            this.RightSidebar.MinimumSize = new System.Drawing.Size(250, 0);
             this.RightSidebar.Name = "RightSidebar";
             this.RightSidebar.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.RightSidebar.Size = new System.Drawing.Size(200, 282);
+            this.RightSidebar.Size = new System.Drawing.Size(250, 282);
             this.RightSidebar.TabIndex = 2;
             // 
             // RightSidebarContainer
@@ -129,7 +130,7 @@ namespace Sledge.Shell.Forms
             this.RightSidebarContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSidebarContainer.Location = new System.Drawing.Point(8, 0);
             this.RightSidebarContainer.Name = "RightSidebarContainer";
-            this.RightSidebarContainer.Size = new System.Drawing.Size(192, 282);
+            this.RightSidebarContainer.Size = new System.Drawing.Size(242, 282);
             this.RightSidebarContainer.TabIndex = 0;
             // 
             // LeftSidebar
