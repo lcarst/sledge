@@ -106,6 +106,8 @@ namespace Sledge.BspEditor.Tools.Texture
         public string ActionAxis { get; set; }
         public string ActionAlignToView { get; set; }
 
+        private bool _textureSelectionChanged = false;
+
         public void Translate(ITranslationStringProvider strings)
         {
             CreateHandle();
@@ -293,6 +295,7 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             if (_freeze) return;
 
+            _textureSelectionChanged = true;
             _freeze = true;
 
             var selection = sel.ToList();
@@ -556,7 +559,8 @@ namespace Sledge.BspEditor.Tools.Texture
 
             await ApplyChanges((mo, f) =>
             {
-                f.Texture.Name = item;
+                if (_textureSelectionChanged)
+                    f.Texture.Name = item;
                 ApplyFaceValues(f);
                 return Task.FromResult(true);
             });
@@ -695,6 +699,7 @@ namespace Sledge.BspEditor.Tools.Texture
 
         private void TexturesListTextureSelected(object sender, string item)
         {
+            _textureSelectionChanged = true;
             ApplyTexture(item);
         }
 
@@ -716,6 +721,8 @@ namespace Sledge.BspEditor.Tools.Texture
 
         private void OnClosing(object sender, FormClosingEventArgs e)
         {
+            // Should really be done on open...
+            _textureSelectionChanged = false;
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 e.Cancel = true;
