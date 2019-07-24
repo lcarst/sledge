@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
+using Sledge.BspEditor.Modification.Operations;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Components;
@@ -18,14 +19,6 @@ using Sledge.Providers.Texture;
 using Sledge.Shell;
 using System.Linq;
 using System.Reactive.Linq;
-
-using Sledge.BspEditor.Modification.Operations;
-using Sledge.BspEditor.Modification.Operations.Data;
-using Sledge.BspEditor.Primitives;
-using Sledge.BspEditor.Primitives.MapObjectData;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.DataStructures.Geometric;
-using Sledge.Shell.Forms;
 
 namespace Sledge.BspEditor.Tools.Texture
 {
@@ -108,7 +101,9 @@ namespace Sledge.BspEditor.Tools.Texture
                 RecentTexturesList.Collection = tc;
             }
             else
+            {
                 RecentTexturesList.Collection = null;
+            }
 
             await this.InvokeAsync(() =>
             {
@@ -119,7 +114,7 @@ namespace Sledge.BspEditor.Tools.Texture
 
             if (md != null)
             {
-                await TextureSelected(md.Map.Data.GetOne<ActiveTexture>()?.Name);
+                await ActiveTextureChanged(md.Map.Data.GetOne<ActiveTexture>()?.Name);
             }
         }
 
@@ -147,9 +142,7 @@ namespace Sledge.BspEditor.Tools.Texture
                 AutoScroll = true,
                 BackColor = Color.Black,
                 EnableDrag = false,
-                // 64 in the texture application dialog, but we have more space here
-                ImageSize = 96
-                //ImageSize = 128
+                ImageSize = 64
             };
 
             RecentTextureListPanel.Controls.Add(RecentTexturesList);
@@ -165,27 +158,32 @@ namespace Sledge.BspEditor.Tools.Texture
             else
                 item = RecentTexturesList.GetHighlightedTextures().FirstOrDefault();
 
-            // Actually change it
-        }
+            if (!_activeDocument.TryGetTarget(out MapDocument doc) || item == null) 
+                return;
 
-        private void UpdateRecentTextureList()
-        {
-            RecentTexturesList.SetTextureList(_recentTextures);
+            var tex = await doc.Environment.GetTextureCollection();
+            var ti = await tex.GetTextureItem(item);
+            var at = new ActiveTexture {Name = item};
+            await MapDocumentOperation.Perform(doc, new TrivialOperation(x => x.Map.Data.Replace(at), x => x.Update(at)));
         }
 
         private async Task ActiveTextureChanged(string item)
         {
-            if (string.IsNullOrWhiteSpace(item))
+            if (item == _currentTexture || string.IsNullOrEmpty(item)) 
                 return;
+
+            _currentTexture = item;
            
             // It's terrible to maintain separate lists here and in the texture 
-            // application dialog, but they should be synchronized properly
+            // application dialog, but they should be synchronized.
             _recentTextures.Remove(item);
             _recentTextures.Insert(0, item);
 
-            if (_recentTextures.Count > 10) 
-                _recentTextures.RemoveRange(10, _recentTextures.Count - 10);
-            UpdateRecentTextureList();
+            int maxtex = 50;
+            if (_recentTextures.Count > maxtex) 
+                _recentTextures.RemoveRange(maxtex, _recentTextures.Count - maxtex);
+            
+            RecentTexturesList.SetTextureList(_recentTextures);
 
             if (RecentTexturesList.GetTextureList().Contains(item))
             {
@@ -196,13 +194,8 @@ namespace Sledge.BspEditor.Tools.Texture
             await TextureSelected(item);
         }
 
-
-
         private async Task TextureSelected(string selection)
         {
-            if (selection == _currentTexture) return;
-            _currentTexture = selection;
-
             if (!_activeDocument.TryGetTarget(out MapDocument doc)) return;
 
             Bitmap bmp = null;

@@ -41,7 +41,7 @@ namespace Sledge.BspEditor.Tools.Texture
             // BrowseButton
             // 
             this.BrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BrowseButton.Location = new System.Drawing.Point(102, 451);
+            this.BrowseButton.Location = new System.Drawing.Point(102, 413);
             this.BrowseButton.Name = "BrowseButton";
             this.BrowseButton.Size = new System.Drawing.Size(95, 22);
             this.BrowseButton.TabIndex = 11;
@@ -52,7 +52,7 @@ namespace Sledge.BspEditor.Tools.Texture
             // ReplaceButton
             // 
             this.ReplaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReplaceButton.Location = new System.Drawing.Point(102, 475);
+            this.ReplaceButton.Location = new System.Drawing.Point(102, 437);
             this.ReplaceButton.Name = "ReplaceButton";
             this.ReplaceButton.Size = new System.Drawing.Size(95, 22);
             this.ReplaceButton.TabIndex = 12;
@@ -63,7 +63,7 @@ namespace Sledge.BspEditor.Tools.Texture
             // ApplyButton
             // 
             this.ApplyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ApplyButton.Location = new System.Drawing.Point(3, 475);
+            this.ApplyButton.Location = new System.Drawing.Point(3, 437);
             this.ApplyButton.Name = "ApplyButton";
             this.ApplyButton.Size = new System.Drawing.Size(95, 22);
             this.ApplyButton.TabIndex = 11;
@@ -79,7 +79,7 @@ namespace Sledge.BspEditor.Tools.Texture
             this.SelectionPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SelectionPictureBox.Location = new System.Drawing.Point(3, 3);
             this.SelectionPictureBox.Name = "SelectionPictureBox";
-            this.SelectionPictureBox.Size = new System.Drawing.Size(194, 193);
+            this.SelectionPictureBox.Size = new System.Drawing.Size(193, 193);
             this.SelectionPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SelectionPictureBox.TabIndex = 10;
             this.SelectionPictureBox.TabStop = false;
@@ -88,7 +88,7 @@ namespace Sledge.BspEditor.Tools.Texture
             // 
             this.SizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SizeLabel.AutoSize = true;
-            this.SizeLabel.Location = new System.Drawing.Point(3, 456);
+            this.SizeLabel.Location = new System.Drawing.Point(3, 418);
             this.SizeLabel.Name = "SizeLabel";
             this.SizeLabel.Size = new System.Drawing.Size(27, 13);
             this.SizeLabel.TabIndex = 13;
@@ -98,7 +98,7 @@ namespace Sledge.BspEditor.Tools.Texture
             // 
             this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(3, 436);
+            this.NameLabel.Location = new System.Drawing.Point(3, 398);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(35, 13);
             this.NameLabel.TabIndex = 13;
@@ -106,11 +106,12 @@ namespace Sledge.BspEditor.Tools.Texture
             // 
             // RecentTextureListPanel
             // 
-            this.RecentTextureListPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.RecentTextureListPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RecentTextureListPanel.Location = new System.Drawing.Point(6, 202);
+            this.RecentTextureListPanel.Location = new System.Drawing.Point(4, 202);
             this.RecentTextureListPanel.Name = "RecentTextureListPanel";
-            this.RecentTextureListPanel.Size = new System.Drawing.Size(191, 186);
+            this.RecentTextureListPanel.Size = new System.Drawing.Size(193, 193);
             this.RecentTextureListPanel.TabIndex = 37;
             // 
             // TextureSidebarPanel
@@ -128,7 +129,7 @@ namespace Sledge.BspEditor.Tools.Texture
             this.MaximumSize = new System.Drawing.Size(0, 500);
             this.MinimumSize = new System.Drawing.Size(200, 165);
             this.Name = "TextureSidebarPanel";
-            this.Size = new System.Drawing.Size(200, 500);
+            this.Size = new System.Drawing.Size(200, 462);
             ((System.ComponentModel.ISupportInitialize)(this.SelectionPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
