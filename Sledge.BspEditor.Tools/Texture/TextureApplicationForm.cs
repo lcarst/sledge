@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Drawing;
@@ -346,7 +346,7 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             if (_freeze) return;
 
-            if (item == null)
+            if (string.IsNullOrWhiteSpace(item))
             {
                 SelectedTexturesList.SetHighlightedTextures(new string[0]);
                 return;

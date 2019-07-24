@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -15,6 +16,16 @@ using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.Providers.Texture;
 using Sledge.Shell;
+using System.Linq;
+using System.Reactive.Linq;
+
+using Sledge.BspEditor.Modification.Operations;
+using Sledge.BspEditor.Modification.Operations.Data;
+using Sledge.BspEditor.Primitives;
+using Sledge.BspEditor.Primitives.MapObjectData;
+using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.DataStructures.Geometric;
+using Sledge.Shell.Forms;
 
 namespace Sledge.BspEditor.Tools.Texture
 {
@@ -37,6 +48,9 @@ namespace Sledge.BspEditor.Tools.Texture
         private string _currentTexture;
         private WeakReference<MapDocument> _activeDocument;
 
+        private readonly List<string> _recentTextures = new List<string>();
+        private TextureListPanel RecentTexturesList;
+
         public string Apply
         {
             set => this.InvokeLater(() => ApplyButton.Text = value);
@@ -56,10 +70,14 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             CreateHandle();
             InitializeComponent();
+            InitialiseTextureList();
 
             SizeLabel.Text = "";
             NameLabel.Text = "";
             _activeDocument = new WeakReference<MapDocument>(null);
+
+            RecentTexturesList.HighlightedTexturesChanged += TextureListHighlightedTexturesChanged;
+
         }
 
         private void ApplyButtonClicked(object sender, EventArgs e)
@@ -84,6 +102,14 @@ namespace Sledge.BspEditor.Tools.Texture
             _activeDocument = new WeakReference<MapDocument>(md);
             _currentTexture = null;
 
+            if (md != null)
+            {
+                Environment.TextureCollection tc = await md.Environment.GetTextureCollection();
+                RecentTexturesList.Collection = tc;
+            }
+            else
+                RecentTexturesList.Collection = null;
+
             await this.InvokeAsync(() =>
             {
                 var dis = SelectionPictureBox.Image;
@@ -101,7 +127,8 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             if (_activeDocument.TryGetTarget(out MapDocument t) && change.Document == t)
             {
-                await TextureSelected(t.Map.Data.GetOne<ActiveTexture>()?.Name);
+                if (change.HasDataChanges && change.AffectedData.Any(x => x is ActiveTexture))
+                    await ActiveTextureChanged(t.Map.Data.GetOne<ActiveTexture>()?.Name);
             }
         }
 
@@ -109,6 +136,66 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             return context.TryGet("ActiveDocument", out MapDocument _);
         }
+
+        private void InitialiseTextureList()
+        {
+            RecentTexturesList = new TextureListPanel
+            {
+                AllowMultipleHighlighting = false,
+                AllowHighlighting = true,
+                Dock = DockStyle.Fill,
+                AutoScroll = true,
+                BackColor = Color.Black,
+                EnableDrag = false,
+                // 64 in the texture application dialog, but we have more space here
+                ImageSize = 128
+            };
+
+            RecentTextureListPanel.Controls.Add(RecentTexturesList);
+        }
+
+        private async void TextureListHighlightedTexturesChanged(object sender, IEnumerable<string> sel)
+        {
+            List<string> selection = sel.ToList();
+            string item = selection.FirstOrDefault();
+
+            if (selection.Any())
+                RecentTexturesList.SetHighlightedTextures(new string[0]);
+            else
+                item = RecentTexturesList.GetHighlightedTextures().FirstOrDefault();
+
+            // Actually change it
+        }
+
+        private void UpdateRecentTextureList()
+        {
+            RecentTexturesList.SetTextureList(_recentTextures);
+        }
+
+        private async Task ActiveTextureChanged(string item)
+        {
+            if (string.IsNullOrWhiteSpace(item))
+                return;
+           
+            // It's terrible to maintain separate lists here and in the texture 
+            // application dialog, but they should be synchronized properly
+            _recentTextures.Remove(item);
+            _recentTextures.Insert(0, item);
+
+            if (_recentTextures.Count > 10) 
+                _recentTextures.RemoveRange(10, _recentTextures.Count - 10);
+            UpdateRecentTextureList();
+
+            if (RecentTexturesList.GetTextureList().Contains(item))
+            {
+                RecentTexturesList.SetHighlightedTextures(new[] {item});
+                RecentTexturesList.ScrollToTexture(item);
+            }
+
+            await TextureSelected(item);
+        }
+
+
 
         private async Task TextureSelected(string selection)
         {
