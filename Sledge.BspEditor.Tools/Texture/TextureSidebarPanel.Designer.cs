@@ -109,6 +109,7 @@ namespace Sledge.BspEditor.Tools.Texture
             this.RecentTextureListPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.RecentTextureListPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RecentTextureListPanel.Location = new System.Drawing.Point(4, 202);
             this.RecentTextureListPanel.Name = "RecentTextureListPanel";
             this.RecentTextureListPanel.Size = new System.Drawing.Size(193, 193);
