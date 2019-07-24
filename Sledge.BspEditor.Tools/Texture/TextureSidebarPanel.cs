@@ -148,7 +148,8 @@ namespace Sledge.BspEditor.Tools.Texture
                 BackColor = Color.Black,
                 EnableDrag = false,
                 // 64 in the texture application dialog, but we have more space here
-                ImageSize = 128
+                ImageSize = 96
+                //ImageSize = 128
             };
 
             RecentTextureListPanel.Controls.Add(RecentTexturesList);

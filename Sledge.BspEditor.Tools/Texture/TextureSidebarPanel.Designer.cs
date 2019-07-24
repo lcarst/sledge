@@ -1,4 +1,4 @@
-﻿namespace Sledge.BspEditor.Tools.Texture
+namespace Sledge.BspEditor.Tools.Texture
 {
     partial class TextureSidebarPanel
     {
