@@ -31,14 +31,14 @@
             this.btnShowAll = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.VisgroupPanel = new Sledge.BspEditor.Editing.Components.Visgroup.VisgroupPanel();
             this.btnNew = new System.Windows.Forms.Button();
+            this.VisgroupPanel = new Sledge.BspEditor.Editing.Components.Visgroup.VisgroupPanel();
             this.SuspendLayout();
             // 
             // btnShowAll
             // 
             this.btnShowAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShowAll.Location = new System.Drawing.Point(104, 188);
+            this.btnShowAll.Location = new System.Drawing.Point(102, 188);
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Size = new System.Drawing.Size(95, 22);
             this.btnShowAll.TabIndex = 5;
@@ -71,6 +71,18 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.EditButtonClicked);
             // 
+            // btnNew
+            // 
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNew.Location = new System.Drawing.Point(102, 165);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(95, 22);
+            this.btnNew.TabIndex = 9;
+            this.btnNew.Tag = "New";
+            this.btnNew.Text = "New";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.NewButtonClicked);
+            // 
             // VisgroupPanel
             // 
             this.VisgroupPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -80,22 +92,10 @@
             this.VisgroupPanel.Name = "VisgroupPanel";
             this.VisgroupPanel.SelectedVisgroup = null;
             this.VisgroupPanel.ShowCheckboxes = true;
-            this.VisgroupPanel.Size = new System.Drawing.Size(196, 160);
+            this.VisgroupPanel.Size = new System.Drawing.Size(194, 156);
             this.VisgroupPanel.TabIndex = 8;
             this.VisgroupPanel.VisgroupToggled += new Sledge.BspEditor.Editing.Components.Visgroup.VisgroupPanel.VisgroupToggledEventHandler(this.VisgroupToggled);
             this.VisgroupPanel.VisgroupSelected += new Sledge.BspEditor.Editing.Components.Visgroup.VisgroupPanel.VisgroupSelectedEventHandler(this.VisgroupSelected);
-            // 
-            // btnNew
-            // 
-            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNew.Location = new System.Drawing.Point(104, 165);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(95, 22);
-            this.btnNew.TabIndex = 9;
-            this.btnNew.Tag = "New";
-            this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.NewButtonClicked);
             // 
             // VisgroupSidebarPanel
             // 
