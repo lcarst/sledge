@@ -41,9 +41,9 @@ namespace Sledge.BspEditor.Tools.Texture
             // BrowseButton
             // 
             this.BrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BrowseButton.Location = new System.Drawing.Point(101, 451);
+            this.BrowseButton.Location = new System.Drawing.Point(3, 416);
             this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Size = new System.Drawing.Size(95, 22);
+            this.BrowseButton.Size = new System.Drawing.Size(194, 41);
             this.BrowseButton.TabIndex = 11;
             this.BrowseButton.Text = "Browse...";
             this.BrowseButton.UseVisualStyleBackColor = true;
@@ -52,9 +52,9 @@ namespace Sledge.BspEditor.Tools.Texture
             // ReplaceButton
             // 
             this.ReplaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ReplaceButton.Location = new System.Drawing.Point(101, 475);
+            this.ReplaceButton.Location = new System.Drawing.Point(102, 463);
             this.ReplaceButton.Name = "ReplaceButton";
-            this.ReplaceButton.Size = new System.Drawing.Size(95, 22);
+            this.ReplaceButton.Size = new System.Drawing.Size(95, 34);
             this.ReplaceButton.TabIndex = 12;
             this.ReplaceButton.Text = "Replace...";
             this.ReplaceButton.UseVisualStyleBackColor = true;
@@ -63,9 +63,9 @@ namespace Sledge.BspEditor.Tools.Texture
             // ApplyButton
             // 
             this.ApplyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ApplyButton.Location = new System.Drawing.Point(3, 475);
+            this.ApplyButton.Location = new System.Drawing.Point(3, 463);
             this.ApplyButton.Name = "ApplyButton";
-            this.ApplyButton.Size = new System.Drawing.Size(95, 22);
+            this.ApplyButton.Size = new System.Drawing.Size(95, 34);
             this.ApplyButton.TabIndex = 11;
             this.ApplyButton.Text = "Apply";
             this.ApplyButton.UseVisualStyleBackColor = true;
@@ -79,7 +79,7 @@ namespace Sledge.BspEditor.Tools.Texture
             this.SelectionPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SelectionPictureBox.Location = new System.Drawing.Point(3, 3);
             this.SelectionPictureBox.Name = "SelectionPictureBox";
-            this.SelectionPictureBox.Size = new System.Drawing.Size(193, 193);
+            this.SelectionPictureBox.Size = new System.Drawing.Size(194, 194);
             this.SelectionPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SelectionPictureBox.TabIndex = 10;
             this.SelectionPictureBox.TabStop = false;
@@ -88,7 +88,7 @@ namespace Sledge.BspEditor.Tools.Texture
             // 
             this.SizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SizeLabel.AutoSize = true;
-            this.SizeLabel.Location = new System.Drawing.Point(3, 456);
+            this.SizeLabel.Location = new System.Drawing.Point(86, 200);
             this.SizeLabel.Name = "SizeLabel";
             this.SizeLabel.Size = new System.Drawing.Size(27, 13);
             this.SizeLabel.TabIndex = 13;
@@ -98,7 +98,7 @@ namespace Sledge.BspEditor.Tools.Texture
             // 
             this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(3, 436);
+            this.NameLabel.Location = new System.Drawing.Point(3, 200);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(35, 13);
             this.NameLabel.TabIndex = 13;
@@ -110,19 +110,19 @@ namespace Sledge.BspEditor.Tools.Texture
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RecentTextureListPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RecentTextureListPanel.Location = new System.Drawing.Point(3, 202);
+            this.RecentTextureListPanel.Location = new System.Drawing.Point(3, 216);
             this.RecentTextureListPanel.Name = "RecentTextureListPanel";
-            this.RecentTextureListPanel.Size = new System.Drawing.Size(193, 222);
+            this.RecentTextureListPanel.Size = new System.Drawing.Size(194, 194);
             this.RecentTextureListPanel.TabIndex = 37;
             // 
             // TextureSidebarPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ApplyButton);
             this.Controls.Add(this.RecentTextureListPanel);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.SizeLabel);
-            this.Controls.Add(this.ApplyButton);
             this.Controls.Add(this.BrowseButton);
             this.Controls.Add(this.ReplaceButton);
             this.Controls.Add(this.SelectionPictureBox);

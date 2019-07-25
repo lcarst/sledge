@@ -142,7 +142,7 @@ namespace Sledge.BspEditor.Tools.Texture
                 AutoScroll = true,
                 BackColor = Color.Black,
                 EnableDrag = false,
-                ImageSize = 64
+                ImageSize = 72
             };
 
             RecentTextureListPanel.Controls.Add(RecentTexturesList);
@@ -188,7 +188,9 @@ namespace Sledge.BspEditor.Tools.Texture
             if (RecentTexturesList.GetTextureList().Contains(item))
             {
                 RecentTexturesList.SetHighlightedTextures(new[] {item});
-                RecentTexturesList.ScrollToTexture(item);
+
+                // Disabled to prevent annoying jumping
+                //RecentTexturesList.ScrollToTexture(item);
             }
 
             await TextureSelected(item);

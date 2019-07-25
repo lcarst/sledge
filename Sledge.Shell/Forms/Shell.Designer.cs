@@ -119,7 +119,7 @@ namespace Sledge.Shell.Forms
             this.RightSidebar.DockDimension = 256;
             this.RightSidebar.Hidden = false;
             this.RightSidebar.Location = new System.Drawing.Point(411, 0);
-            this.RightSidebar.MinimumSize = new System.Drawing.Size(228, 0);
+            this.RightSidebar.MinimumSize = new System.Drawing.Size(225, 0);
             this.RightSidebar.Name = "RightSidebar";
             this.RightSidebar.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.RightSidebar.Size = new System.Drawing.Size(256, 282);
