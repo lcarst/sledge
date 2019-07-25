@@ -36,6 +36,8 @@
             this.RandomShiftYButton = new System.Windows.Forms.Button();
             this.RandomiseShiftValuesGroup = new System.Windows.Forms.GroupBox();
             this.FitGroup = new System.Windows.Forms.GroupBox();
+            this.TileFitYButton = new System.Windows.Forms.Button();
+            this.TileFitXButton = new System.Windows.Forms.Button();
             this.TimesToTileLabel = new System.Windows.Forms.Label();
             this.TileFitX = new System.Windows.Forms.NumericUpDown();
             this.TileFitButton = new System.Windows.Forms.Button();
@@ -148,6 +150,8 @@
             // 
             this.FitGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.FitGroup.Controls.Add(this.TileFitYButton);
+            this.FitGroup.Controls.Add(this.TileFitXButton);
             this.FitGroup.Controls.Add(this.TimesToTileLabel);
             this.FitGroup.Controls.Add(this.TileFitX);
             this.FitGroup.Controls.Add(this.TileFitButton);
@@ -161,19 +165,39 @@
             this.FitGroup.TabStop = false;
             this.FitGroup.Text = "Fit to multiple tiles";
             // 
+            // TileFitYButton
+            // 
+            this.TileFitYButton.Location = new System.Drawing.Point(83, 77);
+            this.TileFitYButton.Name = "TileFitYButton";
+            this.TileFitYButton.Size = new System.Drawing.Size(51, 20);
+            this.TileFitYButton.TabIndex = 6;
+            this.TileFitYButton.Text = "Fit Y";
+            this.TileFitYButton.UseVisualStyleBackColor = true;
+            this.TileFitYButton.Click += new System.EventHandler(this.TileFitYButtonClicked);
+            // 
+            // TileFitXButton
+            // 
+            this.TileFitXButton.Location = new System.Drawing.Point(83, 49);
+            this.TileFitXButton.Name = "TileFitXButton";
+            this.TileFitXButton.Size = new System.Drawing.Size(51, 20);
+            this.TileFitXButton.TabIndex = 5;
+            this.TileFitXButton.Text = "Fit X";
+            this.TileFitXButton.UseVisualStyleBackColor = true;
+            this.TileFitXButton.Click += new System.EventHandler(this.TileFitXButtonClicked);
+            // 
             // TimesToTileLabel
             // 
             this.TimesToTileLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TimesToTileLabel.Location = new System.Drawing.Point(8, 21);
             this.TimesToTileLabel.Name = "TimesToTileLabel";
-            this.TimesToTileLabel.Size = new System.Drawing.Size(191, 27);
+            this.TimesToTileLabel.Size = new System.Drawing.Size(191, 20);
             this.TimesToTileLabel.TabIndex = 4;
             this.TimesToTileLabel.Text = "Times to tile on face:";
             // 
             // TileFitX
             // 
-            this.TileFitX.Location = new System.Drawing.Point(41, 51);
+            this.TileFitX.Location = new System.Drawing.Point(31, 49);
             this.TileFitX.Minimum = new decimal(new int[] {
             1,
             0,
@@ -190,17 +214,19 @@
             // 
             // TileFitButton
             // 
-            this.TileFitButton.Location = new System.Drawing.Point(98, 60);
+            this.TileFitButton.Enabled = false;
+            this.TileFitButton.Location = new System.Drawing.Point(158, 44);
             this.TileFitButton.Name = "TileFitButton";
-            this.TileFitButton.Size = new System.Drawing.Size(71, 23);
+            this.TileFitButton.Size = new System.Drawing.Size(46, 48);
             this.TileFitButton.TabIndex = 3;
             this.TileFitButton.Text = "Fit";
             this.TileFitButton.UseVisualStyleBackColor = true;
+            this.TileFitButton.Visible = false;
             this.TileFitButton.Click += new System.EventHandler(this.TileFitButtonClicked);
             // 
             // TileFitY
             // 
-            this.TileFitY.Location = new System.Drawing.Point(41, 77);
+            this.TileFitY.Location = new System.Drawing.Point(31, 77);
             this.TileFitY.Minimum = new decimal(new int[] {
             1,
             0,
@@ -218,7 +244,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 53);
+            this.label1.Location = new System.Drawing.Point(8, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 13);
             this.label1.TabIndex = 2;
@@ -227,7 +253,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 79);
+            this.label4.Location = new System.Drawing.Point(8, 79);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(17, 13);
             this.label4.TabIndex = 2;
@@ -271,7 +297,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label TimesToTileLabel;
-
-
+        private System.Windows.Forms.Button TileFitYButton;
+        private System.Windows.Forms.Button TileFitXButton;
     }
 }

@@ -128,12 +128,22 @@ namespace Sledge.BspEditor.Tools.Texture
             MapDocumentOperation.Perform(document, edit);
         }
 
-        private void TileFitButtonClicked(object sender, EventArgs e)
+        private void TileFitXButtonClicked(object sender, EventArgs e)
         {
-            ApplyFit();
+            ApplyFit(true, false);
         }
 
-        private async Task ApplyFit()
+        private void TileFitYButtonClicked(object sender, EventArgs e)
+        {
+            ApplyFit(false, true);
+        }
+
+        private void TileFitButtonClicked(object sender, EventArgs e)
+        {
+            ApplyFit(true, true);
+        }
+
+        private async Task ApplyFit(bool fitX, bool fitY)
         {
             var document = _tool.GetDocument();
             var fs = document?.Map.Data.GetOne<FaceSelection>();
@@ -153,7 +163,7 @@ namespace Sledge.BspEditor.Tools.Texture
                 var tex = await tc.GetTextureItem(clone.Texture.Name);
                 if (tex == null) continue;
 
-                clone.Texture.FitToPointCloud(tex.Width, tex.Height, new Cloud(clone.Vertices), tileX, tileY);
+                clone.Texture.FitToPointCloud(tex.Width, tex.Height, new Cloud(clone.Vertices), tileX, tileY, fitX, fitY);
                 
                 edit.Add(new RemoveMapObjectData(it.Key.ID, it.Value));
                 edit.Add(new AddMapObjectData(it.Key.ID, clone));

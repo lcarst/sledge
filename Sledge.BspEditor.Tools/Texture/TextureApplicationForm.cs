@@ -607,12 +607,9 @@ namespace Sledge.BspEditor.Tools.Texture
             PropertiesChanged();
         }
 
-        private void JustifyTopClicked(object sender, EventArgs e)
-        {
-            Justify(BoxAlignMode.Top, false);
-        }
 
-        private async Task Justify(BoxAlignMode mode, bool fit)
+
+        private async Task Justify(BoxAlignMode mode, bool fitX, bool fitY)
         {
             var sel = GetFaceSelection();
             if (sel.IsEmpty) return;
@@ -628,36 +625,53 @@ namespace Sledge.BspEditor.Tools.Texture
                 var tex = await tc.GetTextureItem(f.Texture.Name);
                 if (tex == null) return false;
 
-                if (fit) f.Texture.FitToPointCloud(tex.Width, tex.Height, cloud ?? new Cloud(f.Vertices), 1, 1);
-                else f.Texture.AlignWithPointCloud(tex.Width, tex.Height, cloud ?? new Cloud(f.Vertices), mode);
+                if (fitX || fitY) 
+                    f.Texture.FitToPointCloud(tex.Width, tex.Height, cloud ?? new Cloud(f.Vertices), 1, 1, fitX, fitY);
+                else 
+                    f.Texture.AlignWithPointCloud(tex.Width, tex.Height, cloud ?? new Cloud(f.Vertices), mode);
 
                 return true;
             });
         }
 
+        private void JustifyTopClicked(object sender, EventArgs e)
+        {
+            Justify(BoxAlignMode.Top, false, false);
+        }
+
         private void JustifyLeftClicked(object sender, EventArgs e)
         {
-            Justify(BoxAlignMode.Left, false);
+            Justify(BoxAlignMode.Left, false, false);
         }
 
         private void JustifyCenterClicked(object sender, EventArgs e)
         {
-            Justify(BoxAlignMode.Center, false);
+            Justify(BoxAlignMode.Center, false, false);
         }
 
         private void JustifyRightClicked(object sender, EventArgs e)
         {
-            Justify(BoxAlignMode.Right, false);
+            Justify(BoxAlignMode.Right, false, false);
         }
 
         private void JustifyBottomClicked(object sender, EventArgs e)
         {
-            Justify(BoxAlignMode.Bottom, false);
+            Justify(BoxAlignMode.Bottom, false, false);
         }
 
         private void JustifyFitClicked(object sender, EventArgs e)
         {
-            Justify(BoxAlignMode.Center, true);
+            Justify(BoxAlignMode.Center, true, true);
+        }
+
+        private void JustifyFitXClicked(object sender, EventArgs e)
+        {
+            Justify(BoxAlignMode.Center, true, false);
+        }
+
+        private void JustifyFitYClicked(object sender, EventArgs e)
+        {
+            Justify(BoxAlignMode.Center, false, true);
         }
 
         private void HideMaskCheckboxToggled(object sender, EventArgs e)

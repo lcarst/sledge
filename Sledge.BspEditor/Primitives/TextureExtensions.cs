@@ -98,7 +98,7 @@ namespace Sledge.BspEditor.Primitives
             if (tex.YShift < -height / 2f) tex.YShift += height;
         }
 
-        public static void FitToPointCloud(this Texture tex, int width, int height, Cloud cloud, int tileX, int tileY)
+        public static void FitToPointCloud(this Texture tex, int width, int height, Cloud cloud, int tileX, int tileY, bool fitX, bool fitY)
         {
             if (width <= 0 || height <= 0) return;
             if (tileX <= 0) tileX = 1;
@@ -113,10 +113,17 @@ namespace Sledge.BspEditor.Primitives
             var maxU = xvals.Max();
             var maxV = yvals.Max();
 
-            tex.XScale = (maxU - minU) / (width * tileX);
-            tex.YScale = (maxV - minV) / (height * tileY);
-            tex.XShift = -minU / tex.XScale;
-            tex.YShift = -minV / tex.YScale;
+            if (fitX)
+            {
+                tex.XScale = (maxU - minU) / (width * tileX);
+                tex.XShift = -minU / tex.XScale;
+            }
+
+            if (fitY)
+            {
+                tex.YScale = (maxV - minV) / (height * tileY);
+                tex.YShift = -minV / tex.YScale;
+            }
         }
 
         public static void AlignWithPointCloud(this Texture tex, int width, int height, Cloud cloud, BoxAlignMode mode)
