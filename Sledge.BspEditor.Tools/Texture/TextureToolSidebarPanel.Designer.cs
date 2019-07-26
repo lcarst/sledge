@@ -214,14 +214,12 @@
             // 
             // TileFitButton
             // 
-            this.TileFitButton.Enabled = false;
-            this.TileFitButton.Location = new System.Drawing.Point(158, 44);
+            this.TileFitButton.Location = new System.Drawing.Point(140, 49);
             this.TileFitButton.Name = "TileFitButton";
-            this.TileFitButton.Size = new System.Drawing.Size(46, 48);
+            this.TileFitButton.Size = new System.Drawing.Size(49, 48);
             this.TileFitButton.TabIndex = 3;
             this.TileFitButton.Text = "Fit";
             this.TileFitButton.UseVisualStyleBackColor = true;
-            this.TileFitButton.Visible = false;
             this.TileFitButton.Click += new System.EventHandler(this.TileFitButtonClicked);
             // 
             // TileFitY

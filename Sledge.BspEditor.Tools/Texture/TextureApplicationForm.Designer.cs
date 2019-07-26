@@ -37,9 +37,11 @@ namespace Sledge.BspEditor.Tools.Texture
             this.AlignToFaceCheckbox = new System.Windows.Forms.CheckBox();
             this.AlignToWorldCheckbox = new System.Windows.Forms.CheckBox();
             this.JustifyGroup = new System.Windows.Forms.GroupBox();
-            this.JustifyTopButton = new System.Windows.Forms.Button();
             this.JustifyFitButton = new System.Windows.Forms.Button();
+            this.JustifyFitYButton = new System.Windows.Forms.Button();
+            this.JustifyTopButton = new System.Windows.Forms.Button();
             this.TreatAsOneCheckbox = new System.Windows.Forms.CheckBox();
+            this.JustifyFitXButton = new System.Windows.Forms.Button();
             this.JustifyRightButton = new System.Windows.Forms.Button();
             this.JustifyBottomButton = new System.Windows.Forms.Button();
             this.JustifyCenterButton = new System.Windows.Forms.Button();
@@ -68,8 +70,6 @@ namespace Sledge.BspEditor.Tools.Texture
             this.LeftClickActionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RightClickActionButton = new Sledge.Shell.Controls.DropdownButton();
             this.RightClickActionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.JustifyFitXButton = new System.Windows.Forms.Button();
-            this.JustifyFitYButton = new System.Windows.Forms.Button();
             this.AlignGroup.SuspendLayout();
             this.JustifyGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RotationValue)).BeginInit();
@@ -174,6 +174,26 @@ namespace Sledge.BspEditor.Tools.Texture
             this.JustifyGroup.TabStop = false;
             this.JustifyGroup.Text = "Justify";
             // 
+            // JustifyFitButton
+            // 
+            this.JustifyFitButton.Location = new System.Drawing.Point(6, 15);
+            this.JustifyFitButton.Name = "JustifyFitButton";
+            this.JustifyFitButton.Size = new System.Drawing.Size(30, 20);
+            this.JustifyFitButton.TabIndex = 4;
+            this.JustifyFitButton.Text = "Fit";
+            this.JustifyFitButton.UseVisualStyleBackColor = true;
+            this.JustifyFitButton.Click += new System.EventHandler(this.JustifyFitClicked);
+            // 
+            // JustifyFitYButton
+            // 
+            this.JustifyFitYButton.Location = new System.Drawing.Point(54, 89);
+            this.JustifyFitYButton.Name = "JustifyFitYButton";
+            this.JustifyFitYButton.Size = new System.Drawing.Size(42, 20);
+            this.JustifyFitYButton.TabIndex = 38;
+            this.JustifyFitYButton.Text = "Fit Y";
+            this.JustifyFitYButton.UseVisualStyleBackColor = true;
+            this.JustifyFitYButton.Click += new System.EventHandler(this.JustifyFitYClicked);
+            // 
             // JustifyTopButton
             // 
             this.JustifyTopButton.Location = new System.Drawing.Point(40, 15);
@@ -184,18 +204,6 @@ namespace Sledge.BspEditor.Tools.Texture
             this.JustifyTopButton.UseVisualStyleBackColor = true;
             this.JustifyTopButton.Click += new System.EventHandler(this.JustifyTopClicked);
             // 
-            // JustifyFitButton
-            // 
-            this.JustifyFitButton.Enabled = false;
-            this.JustifyFitButton.Location = new System.Drawing.Point(64, 63);
-            this.JustifyFitButton.Name = "JustifyFitButton";
-            this.JustifyFitButton.Size = new System.Drawing.Size(32, 20);
-            this.JustifyFitButton.TabIndex = 4;
-            this.JustifyFitButton.Text = "Fit";
-            this.JustifyFitButton.UseVisualStyleBackColor = true;
-            this.JustifyFitButton.Visible = false;
-            this.JustifyFitButton.Click += new System.EventHandler(this.JustifyFitClicked);
-            // 
             // TreatAsOneCheckbox
             // 
             this.TreatAsOneCheckbox.Location = new System.Drawing.Point(6, 113);
@@ -205,6 +213,16 @@ namespace Sledge.BspEditor.Tools.Texture
             this.TreatAsOneCheckbox.Text = "Treat as One";
             this.TreatAsOneCheckbox.UseVisualStyleBackColor = true;
             this.TreatAsOneCheckbox.CheckedChanged += new System.EventHandler(this.TreatAsOneCheckboxToggled);
+            // 
+            // JustifyFitXButton
+            // 
+            this.JustifyFitXButton.Location = new System.Drawing.Point(6, 89);
+            this.JustifyFitXButton.Name = "JustifyFitXButton";
+            this.JustifyFitXButton.Size = new System.Drawing.Size(44, 20);
+            this.JustifyFitXButton.TabIndex = 6;
+            this.JustifyFitXButton.Text = "Fit X";
+            this.JustifyFitXButton.UseVisualStyleBackColor = true;
+            this.JustifyFitXButton.Click += new System.EventHandler(this.JustifyFitXClicked);
             // 
             // JustifyRightButton
             // 
@@ -320,7 +338,7 @@ namespace Sledge.BspEditor.Tools.Texture
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 228F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.ScaleXValue, 1, 1);
@@ -602,26 +620,6 @@ namespace Sledge.BspEditor.Tools.Texture
             this.RightClickActionMenu.Name = "RightClickActionMenu";
             this.RightClickActionMenu.Size = new System.Drawing.Size(61, 4);
             this.RightClickActionMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.SetRightClickAction);
-            // 
-            // JustifyFitXButton
-            // 
-            this.JustifyFitXButton.Location = new System.Drawing.Point(6, 89);
-            this.JustifyFitXButton.Name = "JustifyFitXButton";
-            this.JustifyFitXButton.Size = new System.Drawing.Size(44, 20);
-            this.JustifyFitXButton.TabIndex = 6;
-            this.JustifyFitXButton.Text = "Fit X";
-            this.JustifyFitXButton.UseVisualStyleBackColor = true;
-            this.JustifyFitXButton.Click += new System.EventHandler(this.JustifyFitXClicked);
-            // 
-            // JustifyFitYButton
-            // 
-            this.JustifyFitYButton.Location = new System.Drawing.Point(54, 89);
-            this.JustifyFitYButton.Name = "JustifyFitYButton";
-            this.JustifyFitYButton.Size = new System.Drawing.Size(42, 20);
-            this.JustifyFitYButton.TabIndex = 38;
-            this.JustifyFitYButton.Text = "Fit Y";
-            this.JustifyFitYButton.UseVisualStyleBackColor = true;
-            this.JustifyFitYButton.Click += new System.EventHandler(this.JustifyFitYClicked);
             // 
             // TextureApplicationForm
             // 
